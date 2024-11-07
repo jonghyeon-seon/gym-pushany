@@ -3,7 +3,7 @@
 pip install anypush
 ```
 
-##Example
+## Example
 ```python
 import gymnasium as gym
 import anypush
