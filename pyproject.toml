@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "anypush"
-version = "0.0.1"
+version = "0.0.3"
 description = "A gymnasium environment for anypush."
 authors = [
     "Jonghyeon Seon <jonghyeon.seon@holiday-robotics.com>"
@@ -18,7 +18,7 @@ packages = [{include = "anypush"}]
 
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.8"
 gymnasium = ">=0.29.1"
 opencv-python = ">=4.9.0"
 pygame = ">=2.5.2"

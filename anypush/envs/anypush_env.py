@@ -1,6 +1,7 @@
-import gym
-from gym import spaces
+import gymnasium as gym
+from gymnasium import spaces
 
+import os
 import collections
 import numpy as np
 import pygame
@@ -10,7 +11,7 @@ from pymunk.vec2d import Vec2d
 import shapely.geometry as sg
 import cv2
 import skimage.transform as st
-from pymunk_override import DrawOptions
+from anypush.envs.pymunk_override import DrawOptions
 import importlib
 
 OBJECT_NAME_LIST = [
@@ -50,17 +51,19 @@ def pymunk_to_shapely(body, shapes):
     return geom
 
 class AnyPushEnv(gym.Env):
-    metadata = {"render.modes": ["human", "rgb_array"], "video.frames_per_second": 10}
+    metadata = {"render_modes": ['human', 'rgb_array'], "render_fps": 10}
     reward_range = (0., 1.)
 
     def __init__(self,
             legacy=False, 
             block_cog=None, damping=None,
+            render_mode="human",
             render_action=True,
             render_size=96,
             reset_to_state=None,
             object_name='a',
             use_obstacles=True
+
         ):
         self._seed = None
         self.seed()
@@ -69,7 +72,7 @@ class AnyPushEnv(gym.Env):
         self.sim_hz = 100
         # Local controller params.
         self.k_p, self.k_v = 100, 20    # PD control.z
-        self.control_hz = self.metadata['video.frames_per_second']
+        self.control_hz = self.metadata['render_fps']
         # legcay set_state for data compatibility
         self.legacy = legacy
         self.object_name = object_name
@@ -92,6 +95,7 @@ class AnyPushEnv(gym.Env):
         self.block_cog = block_cog
         self.damping = damping
         self.render_action = render_action
+        self.render_mode = render_mode
 
         """
         If human-rendering is used, `self.window` will be a reference
@@ -112,8 +116,9 @@ class AnyPushEnv(gym.Env):
 
         self.use_obstacles = use_obstacles
         self.obstacles = []
-    def reset(self):
-        seed = self._seed
+
+    def reset(self, seed=None, options=None):
+        super().reset(seed=seed)
         self._setup()
         if self.block_cog is not None:
             self.block.center_of_gravity = self.block_cog
@@ -132,7 +137,10 @@ class AnyPushEnv(gym.Env):
         self._set_state(state)
 
         observation = self._get_obs()
-        return observation
+        info = self._get_info()
+        info["is_success"] = False
+
+        return observation, info
 
     def step(self, action):
         dt = 1.0 / self.sim_hz
@@ -163,10 +171,10 @@ class AnyPushEnv(gym.Env):
         observation = self._get_obs()
         info = self._get_info()
 
-        return observation, reward, done, info
+        return observation, reward, done, False, info
 
-    def render(self, mode):
-        return self._render_frame(mode)
+    def render(self):
+        return self._render_frame(self.render_mode)
 
     def teleop_agent(self):
         TeleopAgent = collections.namedtuple('TeleopAgent', ['act'])
@@ -394,7 +402,7 @@ class AnyPushEnv(gym.Env):
         return body
 
     def add_object(self, position, angle, scale=30, color='LightSlateGray', mask=pymunk.ShapeFilter.ALL_MASKS(), object_name='a', body_type=pymunk.Body.DYNAMIC):
-        module_name = "diffusion_policy.env.anypush.objects"
+        module_name = "anypush.envs.objects"
         function_name = f"add_{object_name.upper()}"
         if object_name.isdigit():
             function_name = "add_digit"

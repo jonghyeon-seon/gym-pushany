@@ -1,4 +1,4 @@
-from gym import spaces
+from gymnasium import spaces
 from anypush.envs.anypush_env import AnyPushEnv
 import numpy as np
 import cv2

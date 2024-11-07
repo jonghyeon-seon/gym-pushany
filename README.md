@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # example.py
 import gymnasium as gym
 import anypush
@@ -14,3 +15,6 @@ for _ in range(1000):
         observation, info = env.reset()
 
 env.close()
+=======
+## AnyPush
+>>>>>>> 0dc1b9c (working!)

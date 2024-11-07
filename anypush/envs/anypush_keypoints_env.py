@@ -1,5 +1,5 @@
 from typing import Dict, Sequence, Union, Optional
-from gym import spaces
+from gymnasium import spaces
 from anypush.envs.anypush_env import AnyPushEnv
 from anypush.envs.pymunk_keypoint_manager import PymunkKeypointManager
 import numpy as np
