@@ -1,8 +1,32 @@
 import gymnasium as gym
 import anypush
 
-object_name = 'ellipse'  # 예시로 'ellipse'를 사용
-use_obstacles = True     # 예시로 True를 사용
+# OBJECT_NAME_LIST = [
+#     't',
+#     '0',
+#     '1',
+#     '2',
+#     '3',
+#     '4',
+#     '5',
+#     '6',
+#     '7',
+#     '8',
+#     '9',
+#     'ellipse',
+#     'rectangle',
+#     'reg3',
+#     'reg4',
+#     'reg5',
+#     'reg6',
+#     'reg7',
+#     'reg8',
+#     'reg9',
+#     'reg10'
+# ]
+
+object_name = 'ellipse'  
+use_obstacles = True     
 env = gym.make("anypush/AnyPush-v0", object_name=object_name, use_obstacles=use_obstacles)
 observation, info = env.reset()
 
