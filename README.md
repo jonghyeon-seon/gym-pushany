@@ -1,6 +1,6 @@
 ## Install Anypush
 ```python
-pip install anypush
+pip install gym-pushany
 ```
 
 ## Example
