@@ -5,7 +5,7 @@ import pymunk
 import pygame
 from matplotlib import cm
 import cv2
-from anypush.envs.pymunk_override import DrawOptions
+from gym_pushany.envs.pymunk_override import DrawOptions
 
 
 def farthest_point_sampling(points: np.ndarray, n_points: int, init_idx: int):
@@ -128,10 +128,10 @@ class PymunkKeypointManager:
 
 
 def test():
-    from diffusion_policy.environment.anypush_env import AnyPushEnv
+    from gym_pushany.envs.pushany_env import PushAnyEnv
     from matplotlib import pyplot as plt
     
-    env = PushTEnv(headless=True, obs_state=False, draw_action=False)
+    env = PushAnyEnv(headless=True, obs_state=False, draw_action=False)
     kp_manager = PymunkKeypointManager.create_from_pusht_env(env=env)
     env.reset()
     obj_map = {

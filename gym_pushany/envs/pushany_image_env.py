@@ -1,9 +1,9 @@
 from gymnasium import spaces
-from anypush.envs.anypush_env import AnyPushEnv
+from gym_pushany.envs.pushany_env import PushAnyEnv
 import numpy as np
 import cv2
 
-class AnyPushImageEnv(AnyPushEnv):
+class PushAnyImageEnv(PushAnyEnv):
     metadata = {"render.modes": ["rgb_array"], "video.frames_per_second": 10}
 
     def __init__(self,

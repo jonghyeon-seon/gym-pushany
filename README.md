@@ -6,8 +6,9 @@ pip install anypush
 ## Example
 ```python
 import gymnasium as gym
-import anypush
+import gym_pushany
 
+<<<<<<< HEAD
 # OBJECT_NAME_LIST = [
 #     't',
 #     '0',
@@ -35,6 +36,11 @@ import anypush
 object_name = 'ellipse'  
 use_obstacles = True     
 env = gym.make("anypush/AnyPush-v0", object_name=object_name, use_obstacles=use_obstacles)
+=======
+object_name = 'ellipse'  # 예시로 'ellipse'를 사용
+use_obstacles = True     # 예시로 True를 사용
+env = gym.make("pushany/PushAny-v0", object_name=object_name, use_obstacles=use_obstacles)
+>>>>>>> 6ff4299 (change name to gym-pushany)
 observation, info = env.reset()
 
 for _ in range(1000):

@@ -1,5 +1,5 @@
 import gymnasium as gym
-import anypush
+import gym_pushany
 
 # OBJECT_NAME_LIST = [
 #     't',
@@ -27,7 +27,7 @@ import anypush
 
 object_name = 'ellipse'  
 use_obstacles = True     
-env = gym.make("anypush/AnyPush-v0", object_name=object_name, use_obstacles=use_obstacles)
+env = gym.make("pushany/PushAny-v0", object_name=object_name, use_obstacles=use_obstacles)
 observation, info = env.reset()
 
 for _ in range(1000):

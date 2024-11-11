@@ -11,7 +11,7 @@ from pymunk.vec2d import Vec2d
 import shapely.geometry as sg
 import cv2
 import skimage.transform as st
-from anypush.envs.pymunk_override import DrawOptions
+from gym_pushany.envs.pymunk_override import DrawOptions
 import importlib
 
 OBJECT_NAME_LIST = [
@@ -50,7 +50,7 @@ def pymunk_to_shapely(body, shapes):
     geom = sg.MultiPolygon(geoms)
     return geom
 
-class AnyPushEnv(gym.Env):
+class PushAnyEnv(gym.Env):
     metadata = {"render_modes": ['human', 'rgb_array'], "render_fps": 10}
     reward_range = (0., 1.)
 
@@ -402,7 +402,7 @@ class AnyPushEnv(gym.Env):
         return body
 
     def add_object(self, position, angle, scale=30, color='LightSlateGray', mask=pymunk.ShapeFilter.ALL_MASKS(), object_name='a', body_type=pymunk.Body.DYNAMIC):
-        module_name = "anypush.envs.objects"
+        module_name = "gym_pushany.envs.objects"
         function_name = f"add_{object_name.upper()}"
         if object_name.isdigit():
             function_name = "add_digit"

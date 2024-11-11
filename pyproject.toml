@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "anypush"
-version = "0.0.3"
-description = "A gymnasium environment for anypush."
+name = "gym-pushany"
+version = "0.0.2"
+description = "A gymnasium environment for pushany."
 authors = [
     "Jonghyeon Seon <jonghyeon.seon@holiday-robotics.com>"
 ]
@@ -14,7 +14,7 @@ classifiers=[
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3.10",
 ]
-packages = [{include = "anypush"}]
+packages = [{include = "gym_pushany"}]
 
 
 [tool.poetry.dependencies]

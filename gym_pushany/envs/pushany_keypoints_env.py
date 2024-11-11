@@ -1,10 +1,10 @@
 from typing import Dict, Sequence, Union, Optional
 from gymnasium import spaces
-from anypush.envs.anypush_env import AnyPushEnv
-from anypush.envs.pymunk_keypoint_manager import PymunkKeypointManager
+from gym_pushany.envs.pushany_env import PushAnyEnv
+from gym_pushany.envs.pymunk_keypoint_manager import PymunkKeypointManager
 import numpy as np
 
-class AnyPushKeypointsEnv(AnyPushEnv):
+class PushAnyKeypointsEnv(PushAnyEnv):
     def __init__(self,
             legacy=False,
             block_cog=None, 
@@ -72,7 +72,7 @@ class AnyPushKeypointsEnv(AnyPushEnv):
 
     @classmethod
     def genenerate_keypoint_manager_params(cls, object_name: str):
-        env = AnyPushEnv(object_name=object_name)
+        env = PushAnyEnv(object_name=object_name)
         kp_manager = PymunkKeypointManager.create_from_anypush_env(env, object_name=object_name)
         kp_kwargs = kp_manager.kwargs
         return kp_kwargs
