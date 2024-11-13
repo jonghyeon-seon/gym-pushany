@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gym-pushany"
-version = "0.0.2"
+version = "0.1.11"
 description = "A gymnasium environment for pushany."
 authors = [
     "Jonghyeon Seon <jonghyeon.seon@holiday-robotics.com>"
