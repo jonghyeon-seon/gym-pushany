@@ -204,7 +204,7 @@ class PushAnyEnv(gym.Env):
         img = np.transpose(np.array(pygame.surfarray.pixels3d(canvas)), axes=(1, 0, 2))
         img = cv2.resize(img, (width, height))
         if self.render_action and self.latest_action is not None:
-            coord = (self.latest_action / 512 * [width, height]).astype(np.int32)
+            coord = (np.array(self.latest_action) / 512 * [width, height]).astype(np.int32)
             cv2.drawMarker(img, coord, color=(255, 0, 0), markerType=cv2.MARKER_CROSS, markerSize=8, thickness=1)
         return img
 
